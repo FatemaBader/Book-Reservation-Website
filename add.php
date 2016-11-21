@@ -1,8 +1,14 @@
 <html>
-<p>Registration For New User:</p>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="myform">
+		<form  method="POST" >
+<p>Registration for New User:</p>
 <form method="post">
 <p>Username:
-<input type="number" name="username"></p>
+<input type="text" name="username"></p>
 <p>Password:
 <input type="text" name="password"></p>
 <p>First Name:
@@ -13,12 +19,13 @@
 <input type="text" name="addressline1"></p>
 <p>AddressLine2:
 <input type="text" name="addressline2"></p>
-<p>City:
+<p>City:<br>
 <input type="text" name="city"></p>
 <p>Mobile:
 <input type="number" name="mobile"></p>
 <p><input type="submit" value="Add New"/></p>
 </form>
+</div>
 <?php
 
  require_once "db.php";

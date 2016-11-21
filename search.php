@@ -8,8 +8,9 @@
 
 <!--.Create a PHP page that query the product table
  and return/display all data from the table.-->
-	<div id="myform">Book Title:
+	<div id="myform">
 		<form method="GET" action="search_start.php">
+		Book Title:
 		<input type="text" name="query" autocomplete="off"/>
 		<input type="submit" value="Search"/>
 		</form>
