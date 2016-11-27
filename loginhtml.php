@@ -1,28 +1,30 @@
-<?php session_start();
+<?php 
+session_start();
 
 require_once "db.php";
 
 unset($_SESSION["username"]);
-$username=$_POST['username'];
-$password=$_POST['password'];
-
-$res= mysql_query("SELECT * FROM users WHERE username='$username' 
-	AND password='$password'")
-		or die("Failed to query database".mysql_error());
-$row=mysql_fetch_array($res);
 
 if ( isset($_POST["username"]) && isset($_POST["password"]) )
 {
-	if ($row['username']==$username && $row['password']==$password)
+	$username=$_POST["username"];
+	$password=$_POST["password"];
+	
+	$res= mysql_query("SELECT * FROM users WHERE username='$username' 
+	AND password='$password'")
+		or die("Failed to query database".mysql_error());
+	$row=mysql_fetch_array($res);
+	if ($row!=0)
 	{	
 		echo "Login success!! Welcome ".$row['username'];
 		$_SESSION["success"] = "Logged in.";
+		$_SESSION["username"] = $_POST["username"];
 		header( 'Location: options.html' ) ;
 		return;
 	}
 	else
 	{
-		//echo "Invalid Login. Please register.";
+		echo "Invalid Login. Please register.";
 		//exit();
 		$_SESSION["error"] = "Incorrect password.";
 		//echo('<p style="color:red">Error:'.
@@ -44,15 +46,16 @@ else if ( count($_POST) > 0 )
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<?php
-if ( isset($_SESSION["error"]) ) {
-echo('<p style="color:red">Error:'.
-$_SESSION["error"]."</p>\n");
-unset($_SESSION["error"]);
-}
-?>
 	<div id="myform">
-		<form  method="POST" >
+	<h2><b>Log In<b></h2>
+	<?php
+		if ( isset($_SESSION["error"]) ) {
+		echo('<p style="color:red">Error:'.
+		$_SESSION["error"]."</p>\n");
+		unset($_SESSION["error"]);
+		}
+	?>
+		<form  method="POST"  >
 		<p>
 			<label>Username:</label>
 			<input type="text" id="username" name="username" required></br>
@@ -69,6 +72,6 @@ unset($_SESSION["error"]);
 		</form>
 	</div>
 	<!--<a href="options.html">Login</a></br>-->
-	
 </body>
-</html>
+</html>	
+

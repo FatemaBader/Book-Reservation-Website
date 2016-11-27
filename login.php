@@ -3,12 +3,12 @@
 require_once "db.php";
 
 unset($_SESSION["username"]);
-$username=$_POST['username'];
-$password=$_POST['password'];
+$username=($_SESSION($_POST["username"])
+$password=($_SESSION($_POST["password"])
 
 $res= mysql_query("SELECT * FROM users WHERE username='$username' 
-	AND password='$password'");
-		//or die("Failed to query database".mysql_error());
+	AND password='$password'")
+		or die("Failed to query database".mysql_error());
 $row=mysql_fetch_array($res);
 
 if ( isset($_POST["username"]) && isset($_POST["password"]) )
