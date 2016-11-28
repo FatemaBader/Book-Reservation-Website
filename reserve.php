@@ -2,38 +2,34 @@
 require_once "db.php";
 $username = $_SESSION['username'];
 echo $username;
+$con = mysqli_connect('localhost', 'root', '', 'book');
+		
+		
+		//update reserved field on books table to Y 
+		//Insert ISBN, username and time into reserved table
 		
 		$id = $_GET['id'];
 		echo $id;
-		//update reserved field on books table to Y 
-		//Insert ISBN username and time into reserved table
-		
-		//$sql="UPDATE books ". "SET reserved = 'Y' ". 
-               //"WHERE (`ISBN` LIKE '%".$id."%')" ;
-			   
-		//$sql = "UPDATE books SET reserved='Y' WHERE (`ISBN` LIKE '%".$category."%')";
-		// $result = mysql_query("SELECT ISBN,title FROM books
-            // WHERE (('ISBN' LIKE '%".$id."%')") or die(mysql_error());
+		//$id = mysql_real_escape_string($_GET['id']);
+		$result = mysqli_query($con,"SELECT TITLE,ISBN FROM BOOKS WHERE ISBN='$id'");
+		$row=mysqli_fetch_array($result);
+		echo "<p>Confirm: Reserve $row[0] with ID: $row[1]</p>\n";
+		echo('<form method="post"><input type="hidden" ');
+		echo('name="id" value="'.htmlentities($row[1]).'">'."\n");
+		echo('<input type="submit" value="Reserve" name="Reserve">');
+		echo('<a href="search.php">Cancel</a>');
+		echo("\n</form>\n");
 
-		// $row=mysql_fetch_array($result);
-		// echo "<p>Confirm: Reserve $row[0] with ID: $row[1]</p>\n";
-		// echo('<form method="post"><input type="hidden" ');
-		// echo('name="id" value="'.htmlentities($row[1]).'">'."\n");
-		// echo('<input type="submit" value="Reserve" name="Reserve">');
-		// echo('<a href="menu.php">Cancel</a>');
-		// echo("\n</form>\n");
-
+		if ( isset($_POST['Reserve']) && isset($_POST['id']) ) {
 			$today=date("Y-m-d");
-			echo $today;
-			//$id = mysql_real_escape_string($_POST['id']);
-			$update="Update books Set reserved='Y' WHERE ISBN='$id'"; 
-			// mysqli_query($con,$update);
-			// $insert = "INSERT INTO RESERVATIONS(ISBN,USERNAME,BOOKINGDATE) VALUES ('$id','$username','$today')";
-			// mysqli_query($con,$insert);
-			// echo 'Success - <a href="menu.php">Continue...</a>';
-			// return;
-		// }
-
+			$id = mysql_real_escape_string($_POST['id']);
+			$update="Update BOOKS Set RESERVED='Y'WHERE ISBN='$id'"; 
+			mysqli_query($con,$update);
+			$insert = "INSERT INTO RESERVED(ISBN,USERNAME,RDATE) VALUES ('$id','$username','$today')";
+			mysqli_query($con,$insert);
+			echo 'Success - <a href="search.php">Continue...</a>';
+			return;
+		}
 
 
  ?>
