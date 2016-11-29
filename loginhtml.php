@@ -46,6 +46,9 @@ else if ( count($_POST) > 0 )
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+			<div id="header">
+				<img src="Libraries.jpg">
+			</div>
 	<div id="myform">
 	<h2><b>Log In<b></h2>
 	<?php

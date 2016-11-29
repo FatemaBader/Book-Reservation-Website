@@ -1,11 +1,16 @@
 body{
 	background: #eee;
 }
-
+#header {
+	width:100%;
+	margin-left:5%;
+}
 #myform{
 	border:solid gray 1px;
 	width: 20%;
 	border-radius: 5px;
+	margin-top:40px;
+	margin-bottom:500px;
 	margin:100px auto;
 	background:white;
 	padding:50px;
