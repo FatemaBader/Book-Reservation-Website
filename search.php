@@ -5,7 +5,9 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
+			<div id="header">
+				<img src="Libraries.jpg">
+			</div>
 <!--.Create a PHP page that query the product table
  and return/display all data from the table.-->
 	<div id="myform">
@@ -35,9 +37,17 @@
 			$select.='</select>';
 			echo $select;
 			?>
-			<input type="submit" value="Search"/>
+			<input type="submit" value="Search"/></br></br>
+			
+					<input type="button" value="Logout"
+		onclick="location.href='logout.php'; return false ">
 		</form>
 	</div>
+	<div id="footer">
+			<div id="button">
+				<p>Send us an <span class="bold">e-mail</span>!</p>
+			</div>
+		</div>
 
 </body>
 </html>

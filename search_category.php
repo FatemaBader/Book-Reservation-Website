@@ -1,3 +1,12 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+			<div id="header">
+				<img src="Libraries.jpg">
+			</div>
+
 <?php session_start();
 require_once "db.php";
 $category= $_GET['select']; 
@@ -40,4 +49,14 @@ if(mysql_num_rows($results) > 0)
 }
         else{ // if there is no matching rows do following
             echo "No results";
-        }			
+        }
+mysql_close($db);		
+?>
+<div id="footer">
+			<div id="button">
+				<p>Send us an <span class="bold">e-mail</span>!</p>
+			</div>
+		</div>
+
+</body>
+</html>

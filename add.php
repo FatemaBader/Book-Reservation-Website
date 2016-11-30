@@ -3,6 +3,10 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+			<div id="header">
+				<img src="Libraries.jpg">
+			</div>
+
 	<div id="myform" >
 		<form method="POST" action="add.php" onsubmit="return myFunction()" >
 			<p>Registration for New User:</p>
@@ -47,6 +51,11 @@
 			<p><input type="submit" value="Submit"/></p>
 		</form>
 	</div>
+		<div id="footer">
+			<div id="button">
+				<p>Send us an <span class="bold">e-mail</span>!</p>
+			</div>
+		</div>
 </body>
 </html>
 <?php
@@ -96,7 +105,9 @@ $sql = "INSERT INTO users (username, password,fname,sname,addressline1,addressli
 VALUES ('$n', '$e','$s','$p','$z','$f','$q','$t','$r')";
 
 //print to screen to confirm that they have been added to sql database
-echo "<pre>\n$sql\n</pre>\n";
+//echo "<pre>\n$sql\n</pre>\n";
+
+echo 'Success - Please Log in <a href="loginhtml.php">Continue...</a>';
 mysql_query($sql);
 }
 ?>

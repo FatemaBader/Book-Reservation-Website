@@ -1,3 +1,12 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+			<div id="header">
+				<img src="Libraries.jpg">
+			</div>
+
 <?php session_start();
 require_once "db.php";
 $username = $_SESSION['username'];
@@ -32,3 +41,11 @@ echo 'Username:' . $username;
 		}
 
 ?>
+<div id="footer">
+			<div id="button">
+				<p>Send us an <span class="bold">e-mail</span>!</p>
+			</div>
+		</div>
+
+</body>
+</html>

@@ -7,26 +7,29 @@
 				<img src="Libraries.jpg">
 			</div>
 
-
 <?php session_start();
 require_once "db.php";
+$username = $_SESSION['username'];
 
-$query = $_GET['query']; 
-$query2 = $_GET['query2']; 
+$con = mysqli_connect('localhost', 'root', '', 'book');
+echo 'Username: ' . $username;
+echo '<br>Available Library Books:<br><br>' ;
 
-$raw_results = mysql_query("SELECT * FROM books
-            WHERE (`title` LIKE '%".$query."%') AND
-			(`author` LIKE '%".$query2."%') ") or die(mysql_error());
-			
-			//error check 
-			if(mysql_error()) 
-			{
-				echo "no results";
-			}
-if(mysql_num_rows($raw_results) > 0)
+
+//•	View all available books – the system should allow the user to see a
+// list of the book(s) currently available 
+	
+	//display books
+	// 3 clumns row0,row1,row2
+		$results = mysqli_query($con,"SELECT * FROM BOOKS 
+		 WHERE reserved='N'")
+		or die(mysqli_error());
+
+		//$row=mysqli_fetch_array($results);
+if(mysqli_num_rows($results) > 0)
 { // if one or more rows are returned do following
              echo '<table border="1">'."\n";
-			while ( $row = mysql_fetch_row($raw_results) ) {
+			while ( $row = mysqli_fetch_row($results) ) {
 				echo "<tr><td>";
 				echo($row[0]);
 				echo("</td><td>");
@@ -39,29 +42,26 @@ if(mysql_num_rows($raw_results) > 0)
 				echo($row[4]);
 				echo("</td><td>");
 				echo($row[5]);
+				echo("</td><td>");
+				echo($row[6]);
 				echo("</td>");
-				
-				if($row[6]=="N")
-				{
-					echo ("<td>".'<a href="reserve.php
+				echo ("<td>".'<a href="reserve.php
 					?id='.htmlentities($row[0]).'
-					">Available</a>'."</td>");
-				}
-				if($row[6]=="Y")
-				{
-					echo ("<td>Reserved</td>");
+					">Reserve</a>'."</td>");
 				}
 				echo("</tr>\n");
-				}
+				
 				echo "</table>\n";
 
 }
-// else{ // if there is no matching rows do following
-		//echo "No results";
-   //}			
-
-mysql_close($db);
+else
+{
+	//error check
+	echo " All books reserved. No books available at this time.";
+}
+	
 ?>
+
 <div id="footer">
 			<div id="button">
 				<p>Send us an <span class="bold">e-mail</span>!</p>
