@@ -18,7 +18,7 @@ if ( isset($_POST["username"]) && isset($_POST["password"]) )
 		echo "Login success!! Welcome ".$row['username'];
 		$_SESSION["success"] = "Logged in.";
 		$_SESSION["username"] = $_POST["username"];
-		header( 'Location: options.html' ) ;
+		header( 'Location: options.php' ) ;
 		return;
 	}
 	else
