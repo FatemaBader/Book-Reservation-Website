@@ -10,13 +10,25 @@
 
 <?php session_start();
 require_once "db.php";
+error_reporting(E_ALL ^ E_NOTICE);
 
 $query = $_GET['query']; 
 $query2 = $_GET['query2']; 
 
+$page= $_GET["page"];
+
+if ($page=="" || $page=="1")
+{
+	$page1=0;
+}
+else
+{
+	$page1=($page*5)-5;
+}
+
 $raw_results = mysql_query("SELECT * FROM books
             WHERE (`title` LIKE '%".$query."%') AND
-			(`author` LIKE '%".$query2."%') ") or die(mysql_error());
+			(`author` LIKE '%".$query2."%') LIMIT $page1,5") or die(mysql_error());
 			
 			//error check 
 			if(mysql_error()) 
@@ -56,11 +68,23 @@ if(mysql_num_rows($raw_results) > 0)
 				echo "</table>\n";
 
 }
-// else{ // if there is no matching rows do following
-		//echo "No results";
-   //}			
 
-mysql_close($db);
+//counting number of page
+$res1 = mysql_query("SELECT * FROM books
+            WHERE (`title` LIKE '%".$query."%') AND
+			(`author` LIKE '%".$query2."%') ") or die(mysql_error());
+$cou=mysql_num_rows($res1);
+$a=$cou/5;
+
+$a= ceil($a);
+echo "<br>"; echo "<br>";
+
+	for($b=1;$b<=$a;$b++)
+	{
+		?><a href="search_start.php?page=<?php echo $b; ?>"><?php echo $b.""; ?></a> <?php
+	}
+
+//mysql_close($db);
 ?>
 <div id="footer">
 			<div id="button">

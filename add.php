@@ -13,14 +13,9 @@
 			<form method="post">
 			<p>Username:
 			<input type="text" name="username" required></p>
-			<!--<p>Password:
-			<input type="text" name="pass1" maxlength="6" 
-			pattern=".{6,}"   required title="Minimum 6 characters"></p>
-			<p>Confirm Password:
-			<input type="password" placeholder="pass2" id="confirm_password" required></p>-->
-<input id="password" name="password" type="password" placeholder="Password"  maxlength="6" 
+			<input id="password" name="password" type="password" placeholder="Password"  maxlength="6" 
 			pattern=".{6,}"   required title="Minimum 6 characters" /> <br />
-<input id="pass2" type="password" placeholder="Confirm Password" required/> <br />
+			<input id="pass2" type="password" placeholder="Confirm Password" required/> <br />
 
 <script>
     function myFunction() {

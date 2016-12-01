@@ -1,0 +1,66 @@
+•	lists the PHP pages used in your application – 
+including a textual description of each page stating what the page does
+ and how it interacts with other pages 
+
+Style.css
+--------------
+I created a single stylesheet of css to format and design my website throughout.
+(as most pages require a form) 
+
+loginhtml.php 
+---------------
+This page contain html and php.
+HTML: displays a form where user is asked to insert their username and password.
+Also displays header and footer where the layout and design is formatted
+depending on the css it is linked to.
+If the login is successful the user is directed to an "options.html" page.
+If there is an invalid login the user will not be able to continue beyond this point.
+The user has an option to register, where the user will be directed to the "add.php"
+page.
+
+add.php
+---------------
+Validation: All put in place
+If successful, it notify the user about the success and ask the user to continue
+,onclick of the continue button the user is directed back to the "loginhtml.php" 
+page, where they will be able to log in using the new username and password.
+
+options.html
+---------------
+A simple form that displays to the user where they can choose an option.
+Search for a book - will direct the user to "search.php"
+Reserve for a book - will direct the user to "display.php"
+View reserved books - will direct the user to "view.php"
+
+search.php
+----------------
+This page will display two forms for the user. (different methods of searching)
+Each form will direct the user to another page depending which search method they choose.
+
+Search by title or/and author will direct the user to the "search_start.php"
+Search by category will direct the user to the "search_category.php" page.
+
+
+search_start.php
+-----------------
+Will display the book results for title or/and author.
+Pagination: There will be no more than 5rows per page.
+
+search_category.php
+-----------------
+Will display the book results under category the user has selected.
+Pagination: There will be no more than 5rows per page.
+
+display.php
+-----------------
+will display all books available.
+
+view.php
+-----------------
+All books reserved by the user that is logged in will display 
+including the date the reservation was made.
+
+logout.php
+-----------------
+each page(except register page and login) includes a logout option where
+ user can logout.

@@ -19,13 +19,10 @@ echo '<br>Available Library Books:<br><br>' ;
 //•	View all available books – the system should allow the user to see a
 // list of the book(s) currently available 
 	
-	//display books
-	// 3 clumns row0,row1,row2
 		$results = mysqli_query($con,"SELECT * FROM BOOKS 
 		 WHERE reserved='N'")
 		or die(mysqli_error());
 
-		//$row=mysqli_fetch_array($results);
 if(mysqli_num_rows($results) > 0)
 { // if one or more rows are returned do following
              echo '<table border="1">'."\n";

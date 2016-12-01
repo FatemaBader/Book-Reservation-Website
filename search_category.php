@@ -9,11 +9,24 @@
 
 <?php session_start();
 require_once "db.php";
+error_reporting(E_ALL ^ E_NOTICE);
+
 $category= $_GET['select']; 
+
+$page= $_GET["page"];
+
+if ($page=="" || $page=="1")
+{
+	$page1=0;
+}
+else
+{
+	$page1=($page*5)-5;
+}
 
 $results = mysql_query("SELECT * 
 						FROM books
-						WHERE (`category` LIKE '%".$category."%')")or die(mysql_error());
+						WHERE (`category` LIKE '%".$category."%') LIMIT $page1,5")or die(mysql_error());
 
 if(mysql_num_rows($results) > 0)
 { // if one or more rows are returned do following
@@ -50,6 +63,21 @@ if(mysql_num_rows($results) > 0)
         else{ // if there is no matching rows do following
             echo "No results";
         }
+//counting number of page
+$res1 = mysql_query("SELECT * 
+						FROM books
+						WHERE (`category` LIKE '%".$category."%')")or die(mysql_error());
+$cou=mysql_num_rows($res1);
+$a=$cou/5;
+
+$a= ceil($a);
+echo "<br>"; echo "<br>";
+
+	for($b=1;$b<=$a;$b++)
+	{
+		?><a href="search_category.php?page=<?php echo $b; ?>"><?php echo $b.""; ?></a> <?php
+	}
+	
 mysql_close($db);		
 ?>
 <div id="footer">

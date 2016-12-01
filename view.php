@@ -21,7 +21,7 @@ echo 'Username:' . $username;
 	
 	//display books
 	// 3 clumns row0,row1,row2
-		$results = mysqli_query($con,"SELECT ISBN,TITLE,AUTHOR FROM BOOKS 
+		$results = mysqli_query($con,"SELECT ISBN,TITLE,AUTHOR,RDATE FROM BOOKS 
 		JOIN RESERVED USING(ISBN) WHERE USERNAME='$username'")
 		or die(mysqli_error());
 
@@ -36,7 +36,9 @@ if(mysqli_num_rows($results) > 0)
 				echo($row[1]);
 				echo("</td><td>");
 				echo($row[2]);
-				echo("</td>");
+				echo("</td><td>");
+				echo($row[3]);
+				
 				echo ("<td>".'<a href="unreserve.php
 					?id='.htmlentities($row[0]).'
 					">Remove Reservation</a>'."</td>");
@@ -49,10 +51,12 @@ if(mysqli_num_rows($results) > 0)
 else
 {
 	//error check
-	echo " No books reserved by user: $username";
+	echo " <br>No books reserved by user: $username <br><br><br><br> " ;
 }
 	
 ?>
+<input type="button" value="Logout"
+		onclick="location.href='logout.php'; return false ">
 <div id="footer">
 			<div id="button">
 				<p>Send us an <span class="bold">e-mail</span>!</p>
