@@ -2,6 +2,11 @@
 including a textual description of each page stating what the page does
  and how it interacts with other pages 
 
+dp.php
+--------------
+This page is used to start a session.
+It is linked to the pages.
+
 Style.css
 --------------
 I created a single stylesheet of css to format and design my website throughout.
